@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+
+}
+def config = rootProject.ext.android
+def depLibs = rootProject.ext.depsLibs
+def dependence = rootProject.ext.dependence
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+
+    defaultConfig {
+
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        buildFeatures {
+            dataBinding true
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation dependence.androidxImplementation
+
+    api depLibs.loadsir
+    api depLibs.bottom_view
+    api depLibs.toast
+    api depLibs.viewpager2
+    api depLibs.refresh_kernel
+    api depLibs.refresh_header
+    api depLibs.refresh_footer
+    api depLibs.material_dialogs
+    api depLibs.immersionbar
+    api depLibs.immersionbar_ktx
+
+}

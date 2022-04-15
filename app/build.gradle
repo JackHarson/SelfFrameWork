@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+Properties props = new Properties()
+props.load(new FileInputStream(file(rootProject.file("local.properties"))))
+def config = rootProject.ext.android
+def dependence = rootProject.ext.dependence
+android {
+    signingConfigs {
+        release {
+            storeFile file(props.getProperty("keystore.path"))
+            //签名密码
+            storePassword props.getProperty("keystore.password")
+            //别名
+            keyAlias props.getProperty("keystore.alias")
+            //别名密码
+            keyPassword props.getProperty("keystore.alias_password")
+        }
+    }
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        buildFeatures {
+            dataBinding true
+        }
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation dependence.androidxImplementation
+    api project(path: ':library-core')
+
+}

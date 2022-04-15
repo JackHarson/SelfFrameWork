@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "SelfFrameWork"
+include ':library-core'
+include ':library-ui'
