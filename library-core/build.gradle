@@ -43,21 +43,36 @@ dependencies {
     implementation dependence.androidxImplementation
     api project(path: ':library-ui')
 
-    api depLibs.adapter_helper
-
-    api depLibs.permissionX
     api depLibs.utilcode
+    //glide
     api depLibs.glide
     kapt depLibs.glide_compiler
-
+    //multidex
+    api depLibs.multidex
+    //retrofit
     api depLibs.retrofit
     api depLibs.converter_gson
-
     api depLibs.interceptor
+    api depLibs.retrofit_url_manager
+    //recycleView helper
+    api depLibs.adapter_helper
+    //Log
     api depLibs.logger
+    //permission
+    api depLibs.permissionX
+    //lifecycle
     api depLibs.lifecycle_ext
-
-    api depLibs.lifecycle_ktx
+    api depLibs.lifecycle_common
     api depLibs.viewModel_ktx
+    // liveData
+    api depLibs.livedata_ktx
+    api depLibs.unpeek_livedata
+    // viewModel
+    api depLibs.viewmodel_ktx
+    api depLibs.fragment_ktx
+    //navigation
+    api depLibs.navigation_fragment
+    api depLibs.navigation_ktx
+    //webView
     api depLibs.agentweb
 }
