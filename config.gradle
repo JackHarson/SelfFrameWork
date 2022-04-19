@@ -71,7 +71,9 @@ ext {
             //recycleView helper
             adapter_helper      : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7',
             immersionbar        : 'com.geyifeng.immersionbar:immersionbar:3.2.2',
-            immersionbar_ktx    : 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+            immersionbar_ktx    : 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2',
+            //指示器库
+            magicIndicator: 'com.github.hackware1993:MagicIndicator:1.7.0'
     ]
 
 }
