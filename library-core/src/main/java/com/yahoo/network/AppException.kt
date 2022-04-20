@@ -9,12 +9,12 @@ package com.yahoo.network
 class AppException : Exception {
 
     var errorMsg: String //错误消息
-    var errCode: Int = 0 //错误码
+    var errCode: String = "0" //错误码
     var errorLog: String? //错误日志
     var throwable: Throwable? = null
 
     constructor(
-        errCode: Int,
+        errCode: String,
         error: String?,
         errorLog: String? = "",
         throwable: Throwable? = null

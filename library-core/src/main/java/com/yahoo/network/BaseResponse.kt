@@ -14,9 +14,8 @@ abstract class BaseResponse<T> {
 
     abstract fun getResponseData(): T
 
-    abstract fun getResponseCode(): Int
+    abstract fun getResponseCode(): String
 
     abstract fun getResponseMsg(): String
-
 
 }
