@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.gyf.immersionbar.ImmersionBar
+import com.yahoo.core.R
 import com.yahoo.ext.getVmClazz
 import com.yahoo.network.manager.NetState
 import com.yahoo.network.manager.NetworkStateManager
@@ -41,8 +43,33 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
             initDataBind()
         }
 
+        //是否是沉浸式
+        if (isTransparentStatusBar()) {
+            transparentStatusBar()
+        } else {
+            immersionBar()
+        }
         init(savedInstanceState)
 
+    }
+
+    open fun isTransparentStatusBar(): Boolean {
+        return false
+    }
+
+
+    /**
+     * 初始化沉浸式
+     * Init immersion bar.
+     */
+    open fun immersionBar() {
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.white)
+            .statusBarDarkFont(true).init()
+    }
+
+    open fun transparentStatusBar() {
+        ImmersionBar.with(this).transparentStatusBar().init()
 
     }
 

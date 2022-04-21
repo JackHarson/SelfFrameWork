@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.gyf.immersionbar.ImmersionBar
+import com.yahoo.core.R
 import com.yahoo.ext.getVmClazz
 import com.yahoo.network.manager.NetState
 import com.yahoo.network.manager.NetworkStateManager
@@ -48,6 +50,33 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     }
 
 
+    /**
+     * 初始化沉浸式
+     * Init immersion bar.
+     */
+    open fun immersionBar() {
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.white)
+            .statusBarDarkFont(true).init()
+    }
+
+    open fun transparentStatusBar() {
+        ImmersionBar.with(this).transparentStatusBar().init()
+
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            if (isTransparentStatusBar()) transparentStatusBar() else immersionBar()
+
+        }
+    }
+
+    open fun isTransparentStatusBar(): Boolean {
+        return false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFirst = true
@@ -60,6 +89,12 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        if (isTransparentStatusBar()) {
+            transparentStatusBar()
+        } else {
+            immersionBar()
+        }
         onVisible()
     }
 
