@@ -8,4 +8,18 @@
         android:id="@+id/mainFragment"
         android:name="com.yahoo.fxw.ui.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.yahoo.web.WebViewFragment"
+        android:label="WebViewFragment" >
+
+    </fragment>
+    <action
+        android:id="@+id/action_to_webFragment"
+        app:destination="@id/webViewFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
 </navigation>

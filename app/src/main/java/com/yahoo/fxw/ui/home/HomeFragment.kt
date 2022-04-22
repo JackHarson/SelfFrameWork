@@ -5,7 +5,6 @@ import com.blankj.utilcode.util.ToastUtils
 import com.yahoo.base.BaseViewModel
 import com.yahoo.base.BaseVmFragment
 import com.yahoo.fxw.R
-import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
 
@@ -29,7 +28,9 @@ class HomeFragment : BaseVmFragment<BaseViewModel>() {
         ToastUtils.showShort("初始化开始----HomeFragment")
     }
 
-    override fun isTransparentStatusBar(): Boolean {
-        return true
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        transparentStatusBar()
     }
+
 }

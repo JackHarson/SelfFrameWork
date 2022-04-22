@@ -5,7 +5,6 @@ import com.blankj.utilcode.util.ToastUtils
 import com.yahoo.base.BaseViewModel
 import com.yahoo.base.BaseVmFragment
 import com.yahoo.fxw.R
-import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
 
@@ -30,5 +29,9 @@ class Home1Fragment : BaseVmFragment<BaseViewModel>() {
         ToastUtils.showShort("初始化开始----Home1Fragment")
     }
 
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        statusBarColorWhite()
+    }
 
 }

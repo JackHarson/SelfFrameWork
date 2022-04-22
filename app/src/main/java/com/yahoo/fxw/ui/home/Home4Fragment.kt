@@ -28,4 +28,8 @@ class Home4Fragment : BaseVmFragment<BaseViewModel>() {
         ToastUtils.showShort("初始化开始----Home4Fragment")
     }
 
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+     transparentStatusBar()
+    }
 }

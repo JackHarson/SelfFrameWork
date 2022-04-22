@@ -45,4 +45,6 @@ class MainFragment : BaseVmFragment<BaseViewModel>() {
     override fun onLazyInitView() {
 
     }
+
+
 }

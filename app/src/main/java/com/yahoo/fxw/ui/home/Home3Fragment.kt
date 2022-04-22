@@ -29,4 +29,9 @@ class Home3Fragment : BaseVmFragment<BaseViewModel>() {
         ToastUtils.showShort("初始化开始----Home3Fragment")
     }
 
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+      statusBarColorWhite()
+    }
+
 }

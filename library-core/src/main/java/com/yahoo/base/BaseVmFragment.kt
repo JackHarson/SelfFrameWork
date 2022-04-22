@@ -1,8 +1,10 @@
 package com.yahoo.base
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
+import com.gyf.immersionbar.components.SimpleImmersionOwner
+import com.gyf.immersionbar.components.SimpleImmersionProxy
 import com.yahoo.core.R
 import com.yahoo.ext.getVmClazz
 import com.yahoo.network.manager.NetState
@@ -24,7 +28,12 @@ import com.yahoo.ui.ext.showLoadingExt
  * Created by ZhangJin on 2022/4/18 3:05 下午.
  * Describe:ViewModelFragment基类，自动把ViewModel注入Fragment
  */
-abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
+abstract class BaseVmFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionOwner {
+
+    /**
+     * ImmersionBar代理类
+     */
+    private val mSimpleImmersionProxy = SimpleImmersionProxy(this)
 
     private val handler = Handler()
 
@@ -49,12 +58,35 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
         mActivity = context as AppCompatActivity
     }
 
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+
+        mSimpleImmersionProxy.isUserVisibleHint = isVisibleToUser
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mSimpleImmersionProxy.onActivityCreated(savedInstanceState)
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        mSimpleImmersionProxy.onHiddenChanged(hidden)
+
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        mSimpleImmersionProxy.onConfigurationChanged(newConfig)
+    }
+
 
     /**
      * 初始化沉浸式
      * Init immersion bar.
      */
-    open fun immersionBar() {
+    open fun statusBarColorWhite() {
         ImmersionBar.with(this)
             .statusBarColor(R.color.white)
             .statusBarDarkFont(true).init()
@@ -65,23 +97,13 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
 
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) {
-            if (isTransparentStatusBar()) transparentStatusBar() else immersionBar()
-
-        }
-    }
-
-    open fun isTransparentStatusBar(): Boolean {
-        return false
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFirst = true
         mViewModel = createViewModel()
         initView(savedInstanceState)
+
         createObserver()
         registerDefUIChange()
         initData()
@@ -90,11 +112,8 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        if (isTransparentStatusBar()) {
-            transparentStatusBar()
-        } else {
-            immersionBar()
-        }
+        initImmersionBar()
+
         onVisible()
     }
 
@@ -135,6 +154,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        mSimpleImmersionProxy.onDestroy()
         handler.removeCallbacksAndMessages(null)
     }
 
@@ -188,4 +208,21 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
      * 懒加载
      */
     abstract fun onLazyInitView()
+
+
+    /**
+     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
+     * Immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    override fun immersionBarEnabled(): Boolean {
+        return true
+    }
+
+
+    override fun initImmersionBar() {
+
+        ImmersionBar.with(this).keyboardEnable(true).init()
+    }
 }
