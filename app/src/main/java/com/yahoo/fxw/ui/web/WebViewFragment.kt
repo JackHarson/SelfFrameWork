@@ -48,6 +48,7 @@ class WebViewFragment : BaseVmFragment<BaseViewModel>() {
             mAgentWeb?.let { web ->
                 if (web.webCreator.webView.canGoBack()) {
                     web.webCreator.webView.goBack()
+
                 } else {
                     nav().navigateUp()
                 }
