@@ -1,4 +1,4 @@
-package com.yahoo.fxw.ext
+package com.yahoo.fxw.app.helper.ext
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import com.yahoo.constant.JConstants
+import com.yahoo.fxw.app.constant.JConstants
 import com.yahoo.fxw.R
 
 

@@ -1,4 +1,4 @@
-package com.yahoo.constant
+package com.yahoo.fxw.app.constant
 
 /**
 

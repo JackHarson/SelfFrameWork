@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
-import com.gyf.immersionbar.components.SimpleImmersionOwner
-import com.gyf.immersionbar.components.SimpleImmersionProxy
+
 import com.yahoo.core.R
 import com.yahoo.ext.getVmClazz
 import com.yahoo.network.manager.NetState
 import com.yahoo.network.manager.NetworkStateManager
+import com.yahoo.statusbar.SimpleImmersionOwner
+import com.yahoo.statusbar.SimpleImmersionProxy
 import com.yahoo.ui.ext.dismissLoadingExt
 import com.yahoo.ui.ext.showLoadingExt
 
@@ -60,7 +60,6 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionO
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-
         mSimpleImmersionProxy.isUserVisibleHint = isVisibleToUser
 
     }
@@ -222,7 +221,6 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionO
 
 
     override fun initImmersionBar() {
-
         ImmersionBar.with(this).keyboardEnable(true).init()
     }
 }

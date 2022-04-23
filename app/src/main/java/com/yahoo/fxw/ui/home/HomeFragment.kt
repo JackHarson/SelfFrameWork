@@ -25,7 +25,7 @@ class HomeFragment : BaseVmFragment<BaseViewModel>() {
     }
 
     override fun onLazyInitView() {
-        ToastUtils.showShort("初始化开始----HomeFragment")
+        ToastUtils.showShort("懒加载开始----HomeFragment")
     }
 
     override fun initImmersionBar() {

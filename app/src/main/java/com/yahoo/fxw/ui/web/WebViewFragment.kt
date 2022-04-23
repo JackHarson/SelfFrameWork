@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import com.gyf.immersionbar.ImmersionBar
-
 import com.just.agentweb.AgentWeb
 import com.yahoo.base.BaseViewModel
 import com.yahoo.base.BaseVmFragment
-import com.yahoo.constant.JConstants
 import com.yahoo.fxw.R
-import com.yahoo.fxw.ext.nav
-
+import com.yahoo.fxw.app.constant.JConstants
+import com.yahoo.fxw.app.helper.ext.nav
+import com.yahoo.fxw.ui.web.AndroidInterface
 import kotlinx.android.synthetic.main.fragment_webview.*
 import kotlinx.android.synthetic.main.top_bar.*
 
@@ -32,6 +31,19 @@ class WebViewFragment : BaseVmFragment<BaseViewModel>() {
 
         initAgentWeb()
 
+
+        initListener()
+
+
+        //注入对象  详见 https://www.jianshu.com/p/53e72a0cdfa1
+        //TODO JS调用Java代码
+        mAgentWeb?.jsInterfaceHolder?.addJavaObject(
+            "android", AndroidInterface(mAgentWeb, this.activity)
+        )
+
+    }
+
+    private fun initListener() {
         ivLeft.setOnClickListener {
             mAgentWeb?.let { web ->
                 if (web.webCreator.webView.canGoBack()) {
@@ -41,6 +53,7 @@ class WebViewFragment : BaseVmFragment<BaseViewModel>() {
                 }
             }
         }
+
     }
 
     private fun initAgentWeb() {
@@ -102,8 +115,7 @@ class WebViewFragment : BaseVmFragment<BaseViewModel>() {
         super.initImmersionBar()
         ImmersionBar.with(this)
             .statusBarColor(R.color.white)
-//            .titleBar(R.id.top_bar)
-            .fitsSystemWindows(true)
+            .titleBar(R.id.top_bar)
             .statusBarDarkFont(true).init()
     }
 }

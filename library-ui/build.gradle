@@ -55,7 +55,7 @@ dependencies {
     api depLibs.material_dialogs_color
     api depLibs.immersionbar
     api depLibs.immersionbar_ktx
-    api depLibs.immersionbar_components
+
     //recycleView helper
     api depLibs.adapter_helper
     api depLibs.magicIndicator

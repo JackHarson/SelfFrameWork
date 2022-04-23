@@ -1,4 +1,4 @@
-package com.yahoo.network
+package com.yahoo.fxw.app.net
 
 import com.google.gson.GsonBuilder
 import com.yahoo.base.BaseNetworkApi

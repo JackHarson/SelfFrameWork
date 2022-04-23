@@ -1,5 +1,6 @@
-package com.yahoo.network
+package com.yahoo.fxw.app.net
 
+import com.yahoo.network.ApiResponse
 import retrofit2.http.GET
 
 /**

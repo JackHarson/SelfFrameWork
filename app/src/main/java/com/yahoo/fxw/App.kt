@@ -1,4 +1,4 @@
-package com.yahoo
+package com.yahoo.fxw
 
 import android.app.Application
 import android.content.Context
@@ -56,7 +56,6 @@ class App : Application() {
         Utils.init(this)
         initLoadSir()
         initBroadcastReceiver()
-
 
     }
 
