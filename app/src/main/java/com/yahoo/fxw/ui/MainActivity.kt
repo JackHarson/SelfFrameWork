@@ -1,6 +1,7 @@
 package com.yahoo.fxw.ui
 
 
+//import com.gyf.immersionbar.ImmersionBar
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
@@ -46,6 +47,8 @@ class MainActivity : BaseVmActivity<BaseViewModel>() {
     override fun createObserver() {
 
     }
+
+    override fun isTransparentStatusBar() = false
 
 
 }

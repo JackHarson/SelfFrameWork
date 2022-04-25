@@ -28,8 +28,6 @@ import q.rorbin.badgeview.QBadgeView
  * Created by ZhangJin on 2022/4/18 5:02 下午.
  * Describe:项目中关于View的自定义拓展函数
  */
-
-
 //设置适配器的列表动画
 fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
     //等于0，关闭列表动画 否则开启

@@ -39,7 +39,7 @@
 
         </activity>
 
-
+<receiver android:name="com.yahoo.network.manager.NetworkStateReceiver" />
     </application>
 
 </manifest>

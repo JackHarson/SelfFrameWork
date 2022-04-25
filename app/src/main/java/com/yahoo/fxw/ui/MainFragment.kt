@@ -1,12 +1,15 @@
 package com.yahoo.fxw.ui
 
 import android.os.Bundle
+//import com.gyf.immersionbar.ImmersionBar
 import com.yahoo.base.BaseViewModel
 import com.yahoo.base.BaseVmFragment
 import com.yahoo.fxw.R
 import com.yahoo.fxw.app.helper.ext.init
 import com.yahoo.fxw.app.helper.ext.initMain
+
 import kotlinx.android.synthetic.main.fragment_main.*
+
 
 /**
 
@@ -45,6 +48,5 @@ class MainFragment : BaseVmFragment<BaseViewModel>() {
     override fun onLazyInitView() {
 
     }
-
 
 }

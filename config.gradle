@@ -75,7 +75,8 @@ ext {
             //指示器库
             magicIndicator            : 'com.github.hackware1993:MagicIndicator:1.7.0',
             // badge
-            badge                     : 'q.rorbin:badgeview:1.1.0'
+            badge                     : 'q.rorbin:badgeview:1.1.0',
+            banner                    : 'io.github.youth5201314:banner:2.2.2'
     ]
 
 }

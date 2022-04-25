@@ -54,7 +54,6 @@ dependencies {
     api depLibs.converter_gson
     api depLibs.interceptor
     api depLibs.retrofit_url_manager
-
     //Log
     api depLibs.logger
     //permission

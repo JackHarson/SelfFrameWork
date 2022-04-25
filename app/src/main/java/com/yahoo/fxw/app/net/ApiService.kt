@@ -1,7 +1,10 @@
 package com.yahoo.fxw.app.net
 
+import com.yahoo.fxw.ui.home.NearByEntity
 import com.yahoo.network.ApiResponse
-import retrofit2.http.GET
+
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 /**
 
@@ -11,14 +14,14 @@ import retrofit2.http.GET
 interface ApiService {
 
     companion object {
-        const val BASE_URL = "https://wanandroid.com/"
+        const val BASE_URL = "https://app.faxingwu.com/"
     }
 
-    /**
-     * 获取banner数据
-     */
-    @GET("banner/json")
-    suspend fun getBanner(): ApiResponse<Any>
+
+    @POST("/v1/mt/nearbyStore")
+    suspend fun nearByList(
+        @Query("city") city: String
+    ): ApiResponse<MutableList<NearByEntity>>
 
 
 }

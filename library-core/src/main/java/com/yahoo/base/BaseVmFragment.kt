@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gyf.immersionbar.ImmersionBar
+//import com.gyf.immersionbar.ImmersionBar
 
 import com.yahoo.core.R
 import com.yahoo.ext.getVmClazz
@@ -221,6 +222,8 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment(), SimpleImmersionO
 
 
     override fun initImmersionBar() {
-        ImmersionBar.with(this).keyboardEnable(true).init()
+        ImmersionBar.with(this)
+            .statusBarDarkFont(true)
+            .keyboardEnable(true).init()
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import com.gyf.immersionbar.ImmersionBar
+//import com.gyf.immersionbar.ImmersionBar
 import com.just.agentweb.AgentWeb
 import com.yahoo.base.BaseViewModel
 import com.yahoo.base.BaseVmFragment
@@ -117,5 +118,6 @@ class WebViewFragment : BaseVmFragment<BaseViewModel>() {
             .statusBarColor(R.color.white)
             .titleBar(R.id.top_bar)
             .statusBarDarkFont(true).init()
+
     }
 }

@@ -1,5 +1,6 @@
 package com.yahoo.base
 
+//import com.gyf.immersionbar.ImmersionBar
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import com.yahoo.network.manager.NetState
 import com.yahoo.network.manager.NetworkStateManager
 import com.yahoo.ui.ext.dismissLoadingExt
 import com.yahoo.ui.ext.showLoadingExt
+
 
 /**
 
@@ -66,6 +68,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
         ImmersionBar.with(this)
             .statusBarColor(R.color.white)
             .statusBarDarkFont(true).init()
+
+
     }
 
     open fun transparentStatusBar() {
