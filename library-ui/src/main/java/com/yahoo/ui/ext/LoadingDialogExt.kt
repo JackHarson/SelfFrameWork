@@ -39,6 +39,7 @@ fun AppCompatActivity.showLoadingExt(message: String = "加载中...") {
             }
         }
         loadingDialog?.show()
+
     }
 }
 
