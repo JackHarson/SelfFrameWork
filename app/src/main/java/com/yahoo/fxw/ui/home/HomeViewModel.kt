@@ -15,14 +15,14 @@ class HomeViewModel : BaseViewModel() {
 
     val storeList = MutableLiveData<MutableList<NearByEntity>>()
 
-    fun getNearList(city: String): MutableLiveData<MutableList<NearByEntity>> {
+    fun getNearList(city: String) {
         requestNoCheck({ apiService.nearByList(city) }, {
-
-            storeList.value = it.getResponseData()
+            if (it.isSuccessful())
+                storeList.value = it.getResponseData()
         }, {
             ToastUtils.showShort(it.errorMsg)
         }, isShowDialog = true)
-        return storeList
+
     }
 
 }
