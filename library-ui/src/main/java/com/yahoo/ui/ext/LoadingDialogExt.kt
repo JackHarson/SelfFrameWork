@@ -16,7 +16,7 @@ private var loadingDialog: MaterialDialog? = null
 /**
  * 打开等待框
  */
-fun AppCompatActivity.showLoadingExt(message: String = "请求网络中") {
+fun AppCompatActivity.showLoadingExt(message: String = "加载中...") {
 
     if (!this.isFinishing) {
         if (loadingDialog == null) {
@@ -24,11 +24,18 @@ fun AppCompatActivity.showLoadingExt(message: String = "请求网络中") {
                 .cancelable(true)
                 .cancelOnTouchOutside(false)
                 .cornerRadius(12f)
-                .customView(R.layout.layout_custom_progress_dialog_view)
+                .customView(
+                    R.layout.layout_custom_progress_dialog_view,
+                    dialogWrapContent = true,
+                    scrollable = true,
+                    horizontalPadding = true,
+                    noVerticalPadding = true
+                )
                 .lifecycleOwner(this)
+
             loadingDialog?.getCustomView()?.run {
                 this.findViewById<TextView>(R.id.loading_tips).text = message
-//                this.findViewById<ProgressBar>(R.id.progressBar).indeterminateTintList = SettingUtil.getOneColorStateList(this@showLoadingExt)
+
             }
         }
         loadingDialog?.show()
@@ -38,7 +45,7 @@ fun AppCompatActivity.showLoadingExt(message: String = "请求网络中") {
 /**
  * 打开等待框
  */
-fun Fragment.showLoadingExt(message: String = "请求网络中") {
+fun Fragment.showLoadingExt(message: String = "加载中...") {
     activity?.let {
         if (!it.isFinishing) {
             if (loadingDialog == null) {
@@ -46,11 +53,17 @@ fun Fragment.showLoadingExt(message: String = "请求网络中") {
                     .cancelable(true)
                     .cancelOnTouchOutside(false)
                     .cornerRadius(12f)
-                    .customView(R.layout.layout_custom_progress_dialog_view)
+                    .customView(
+                        R.layout.layout_custom_progress_dialog_view,
+                        dialogWrapContent = true,
+                        scrollable = true,
+                        horizontalPadding = true,
+                        noVerticalPadding = true
+                    )
                     .lifecycleOwner(this)
                 loadingDialog?.getCustomView()?.run {
                     this.findViewById<TextView>(R.id.loading_tips).text = message
-//                    this.findViewById<ProgressBar>(R.id.progressBar).indeterminateTintList = SettingUtil.getOneColorStateList(it)
+
                 }
             }
             loadingDialog?.show()

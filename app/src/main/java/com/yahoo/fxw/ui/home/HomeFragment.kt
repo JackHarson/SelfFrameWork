@@ -11,6 +11,7 @@ import com.yahoo.fxw.app.helper.ext.show
 import com.yahoo.network.manager.NetState
 import com.yahoo.ui.ext.loadServiceInit
 import com.yahoo.ui.ext.showLoading
+import com.yahoo.ui.ext.showLoadingExt
 import com.youth.banner.Banner
 import com.youth.banner.adapter.BannerImageAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -35,8 +36,6 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
             //点击重试时触发的操作
             loadsir.showLoading()
             mViewModel.getNearList("合肥市")
-
-
         }
     }
 
@@ -59,7 +58,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
     override fun onLazyInitView() {
 
         statusBarColorWhite()
-
+//        showLoadingExt()
 
         mViewModel.getNearList("合肥市")
         val banner = (bannerLayout as Banner<BannerData, BannerImageAdapter<BannerData>>)

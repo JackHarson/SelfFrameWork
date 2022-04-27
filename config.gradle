@@ -76,7 +76,8 @@ ext {
             magicIndicator            : 'com.github.hackware1993:MagicIndicator:1.7.0',
             // badge
             badge                     : 'q.rorbin:badgeview:1.1.0',
-            banner                    : 'io.github.youth5201314:banner:2.2.2'
+            banner                    : 'io.github.youth5201314:banner:2.2.2',
+            avi                       : 'com.wang.avi:library:2.1.3'
     ]
 
 }
