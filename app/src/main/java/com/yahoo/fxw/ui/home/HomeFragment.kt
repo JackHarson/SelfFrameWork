@@ -59,7 +59,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel>() {
     override fun onLazyInitView() {
 
         statusBarColorWhite()
-//loadsir.showLoading()
+
 
         mViewModel.getNearList("合肥市")
         val banner = (bannerLayout as Banner<BannerData, BannerImageAdapter<BannerData>>)

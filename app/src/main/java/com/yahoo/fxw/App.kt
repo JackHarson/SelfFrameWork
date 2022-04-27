@@ -12,7 +12,9 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.yahoo.base.BaseApp
 import com.yahoo.core.R
+import com.yahoo.fxw.app.global.AppViewModel
 import com.yahoo.network.manager.NetworkStateReceiver
 import com.yahoo.ui.loadsir.EmptyCallback
 import com.yahoo.ui.loadsir.ErrorCallback
@@ -26,10 +28,14 @@ import com.yahoo.ui.loadsir.LoadingCallback
  */
 val appContext: Application by lazy { App.context }
 
-class App : Application() {
+//Application全局的ViewModel，里面存放了一些账户信息，基本配置信息等
+val appViewModel: AppViewModel by lazy { App.appViewModelInstance }
+
+class App : BaseApp() {
 
     companion object {
         lateinit var context: Application
+        lateinit var appViewModelInstance: AppViewModel
     }
 
     init {
@@ -54,9 +60,15 @@ class App : Application() {
         super.onCreate()
         context = this
         Utils.init(this)
+        initGlobalViewModel()
         initLoadSir()
         initBroadcastReceiver()
 
+    }
+
+    private fun initGlobalViewModel() {
+
+        appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
     }
 
     private fun initBroadcastReceiver() {
@@ -79,4 +91,6 @@ class App : Application() {
             .setDefaultCallback(SuccessCallback::class.java)//设置默认加载状态页
             .commit()
     }
+
+
 }
